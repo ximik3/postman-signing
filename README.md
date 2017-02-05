@@ -20,10 +20,10 @@ In our case some API (`api.exaple.com`) requires additional security headers to 
   https%3A%2F%2Fapi.example.com%2Frequest%3Fget_param1%3D1%26...%26get_paramN%3DN%3Fpost_param1%3D1%26...%26post_paramM%3DM
   ```
 
-1. Then we use HMAC SHA-1 algorythm to sign that string with *secret key*.
+1. Then we use HMAC SHA-256 algorythm to sign that string with *secret key*.
 
   ```
-  3e853457dfc05c3792c5c736c190b2c683f9dfc6
+  ab43808065162b2472ab750683644fb69d336c74c855b64f763023db6955a1a0
   ```
 
 ### Postman
