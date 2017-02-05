@@ -37,7 +37,7 @@ Postman allows you to write javascript code which runs before request and after 
 
 ## Solution
 
-For explanation see [Solution](#script-details)
+For explanation see [Script Details](#script-details)
 
 ### Setup
 
