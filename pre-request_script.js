@@ -62,7 +62,7 @@ if (Object.keys(request.data).length > 0) {
 }
 
 // generate sign
-var sign = CryptoJS.HmacSHA256(se, apiSecret).toString();
+var sign = CryptoJS.HmacSHA256(encodeURIComponent(se), apiSecret).toString();
 
 // export key and sign to use in headers
 postman.setGlobalVariable("key", apiKey);
