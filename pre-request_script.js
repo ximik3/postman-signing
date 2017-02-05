@@ -50,14 +50,13 @@ if (signPaths.indexOf(lastpath) > -1) {
 
 // ENCRYPTING Region
 // build string to encrypt(se): url + params
-var se = request.url;
+var se = request.url + '?';
 
 // encode all key/value pairs and join to url if exist
 if (Object.keys(request.data).length > 0) {
     for (var key in request.data) {
-        se += 
-            encodeURI(key) + '=' +
-            encodeURI(request.data[key]) + '&';
+        se += key + '=' +
+              request.data[key] + '&';
     }
     se = se.slice(0, -1); // remove last & symbol
 }
