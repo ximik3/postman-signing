@@ -8,16 +8,16 @@ In our case some API (`api.exaple.com`) requires additional security headers to 
 `Security-Key` which is special *session key* and `Security-Sign` which is request checksum - special sign generated from request url and request params using *session secret* key. This security feature guaranties that your request is not modified on it's way to server. For authorization signin/signup requests we use predefined *key* and *secret* which only server and we know about. After successful authorization we receive *session key* and *session secret*, which whould be used for other requests.
 
 ### Signing algorythm
-1. To sign our request we build string in the following way - *request_url*\[?*get_params*\]\[?*post_params*\]:
+1. To sign our request we build string in the following way - *request_url*\[?*params*\], where *params* is request GET/POST key/value pairs sorted by name:
 
   ```
-  https://api.example.com/request?get_param1=1&...&get_paramN=N?post_param1=1&...&post_paramM=M
+  https://api.example.com/request?a_key=val_a&b_key=val_b&...&z_key=val_z
   ```
 
 1. Encode it:
   
   ```
-  https%3A%2F%2Fapi.example.com%2Frequest%3Fget_param1%3D1%26...%26get_paramN%3DN%3Fpost_param1%3D1%26...%26post_paramM%3DM
+  https%3A%2F%2Fapi.example.com%2Frequest%3Fa_key%3Dval_a%26b_key%3Dval_b%26...%26z_key%3Dval_z
   ```
 
 1. Then we use HMAC SHA-256 algorythm to sign that string with *secret key*.
@@ -59,7 +59,7 @@ Let's assume we have one production host (```api.example.com```) and two test ho
 Then pick last path of url to check if it is authorization request. For authorization requests it will use predefined key and secret for other requests it will try to use session keys. Key is exported into global variable `key`, sign into global variable `sign`
 Postman will use that variables in `Security-Key` and `Security-Sign` headers. 
 
-After successful response *tests* script will also pick host flavour and check request path but in case of authorization request it will try to extract *key* and *secret* values and store them to `{flavour}\_key` and `{flavour}\_secret` variables (eg. `demo_key`) to use in future requests.
+After successful response *tests* script will also pick host flavour and check request path but in case of authorization request it will try to extract *key* and *secret* values and store them to `{flavour}\_key` and `{flavour}\_secret` variables (eg. `demo\_key`) to use in future requests.
 
 ## Advanced Topics
 

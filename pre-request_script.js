@@ -52,12 +52,12 @@ if (signPaths.indexOf(lastpath) > -1) {
 // build string to encrypt(se): url + params
 var se = request.url + '?';
 
-// encode all key/value pairs and join to url if exist
+// encode all sorted key/value pairs and join to url if exist
 if (Object.keys(request.data).length > 0) {
-    for (var key in request.data) {
+    Object.keys(request.data).sort().forEach(key => {
         se += key + '=' +
               request.data[key] + '&';
-    }
+    });
     se = se.slice(0, -1); // remove last & symbol
 }
 
