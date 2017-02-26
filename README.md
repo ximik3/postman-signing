@@ -59,7 +59,7 @@ Let's assume we have one production host (```api.example.com```) and two test ho
 Then pick last path of url to check if it is authorization request. For authorization requests it will use predefined key and secret for other requests it will try to use session keys. Key is exported into global variable `key`, sign into global variable `sign`
 Postman will use that variables in `Security-Key` and `Security-Sign` headers. 
 
-After successful response *tests* script will also pick host flavour and check request path but in case of authorization request it will try to extract *key* and *secret* values and store them to `{flavour}\_key` and `{flavour}\_secret` variables (eg. `demo\_key`) to use in future requests.
+After successful response *tests* script will also pick host flavour and check request path but in case of authorization request it will try to extract *key* and *secret* values and store them to `{flavour}_key` and `{flavour}_secret` variables (eg. `demo_key`) to use in future requests.
 
 ## Advanced Topics
 
